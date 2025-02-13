@@ -8,7 +8,7 @@ from scipy.integrate import trapezoid
 
 st.title("Computational Mathematics")
 
-# Sidebar for selecting tasks
+# Sidebar
 task = st.sidebar.selectbox("Choose the task", [
     "Graphical Method and Absolute Error",
     "Comparison of Root-Finding Methods",
@@ -22,7 +22,7 @@ task = st.sidebar.selectbox("Choose the task", [
 
 st.write(f"### {task}")
 
-# Function for plotting a function
+# Function to plot math functions
 def plot_function(f, x_range, root=None):
     x = np.linspace(*x_range, 400)
     y = f(x)
@@ -41,13 +41,13 @@ if task == "Graphical Method and Absolute Error":
         return x**3 - 4*x + 1
 
     root_numeric = fsolve(f, 2)[0]
-    st.write(f"🔹 Numerical root: {root_numeric:.6f}")
+    st.write(f" Numerical root: {root_numeric:.6f}")
 
     approx_root = st.number_input("Enter approximate root:", value=1.8, format="%.4f")
 
     if st.button("Compute"):
         abs_error = abs(root_numeric - approx_root)
-        st.write(f"✅ Absolute Error: {abs_error:.6f}")
+        st.write(f"Absolute Error: {abs_error:.6f}")
 
         # Update graph
         st.pyplot(plot_function(f, (0, 3), root=approx_root))
@@ -61,7 +61,7 @@ elif task == "Comparison of Root-Finding Methods":
 
     if st.button("Compute"):
         root_bisection = bisect(f, a, b)
-        st.write(f"🔹 Bisection Root: {root_bisection:.6f}")
+        st.write(f" Bisection Root: {root_bisection:.6f}")
 
         def secant_method(f, x0, x1, tol):
             iters = 0
@@ -72,7 +72,7 @@ elif task == "Comparison of Root-Finding Methods":
             return x1, iters
 
         root_secant, secant_iters = secant_method(f, 2, 3, 1e-6)
-        st.write(f"🔹 Secant Method Root: {root_secant:.6f} (Iterations: {secant_iters})")
+        st.write(f" Secant Method Root: {root_secant:.6f} (Iterations: {secant_iters})")
 
         st.pyplot(plot_function(f, (0, 3)))
 
@@ -98,7 +98,7 @@ elif task == "Jacobi Method":
 
     if st.button("Compute"):
         solution = jacobi(A, b, x0)
-        st.write(f"🔹 Solution: {solution}")
+        st.write(f" Solution: {solution}")
 
 # Task 4: Iterative Matrix Inversion
 elif task == "Iterative Method for Matrix Inversion":
@@ -133,7 +133,7 @@ elif task == "Linear Curve Fitting":
 
     if st.button("Compute"):
         a, b = least_squares(x, y)
-        st.write(f"🔹 Equation: y = {a:.4f}x + {b:.4f}")
+        st.write(f" Equation: y = {a:.4f}x + {b:.4f}")
 
 # Task 6: Newton’s Forward Interpolation
 elif task == "Newton’s Forward Interpolation":
@@ -143,7 +143,7 @@ elif task == "Newton’s Forward Interpolation":
     if st.button("Compute"):
         f_interp = interp1d(x, y, kind="quadratic")
         f_1_5 = f_interp(1.5)
-        st.write(f"🔹 f(1.5) ≈ {f_1_5:.6f}")
+        st.write(f" f(1.5) ≈ {f_1_5:.6f}")
 
 # Task 7: First Derivative (Newton’s Forward Difference)
 elif task == "First Derivative Using Newton’s Forward Difference":
@@ -152,7 +152,7 @@ elif task == "First Derivative Using Newton’s Forward Difference":
 
     if st.button("Compute"):
         dy_dx = (y[2] - y[1]) / (x[2] - x[1])
-        st.write(f"🔹 dy/dx at x=1 ≈ {dy_dx:.6f}")
+        st.write(f" dy/dx at x=1 ≈ {dy_dx:.6f}")
 
 # Task 8: Trapezoidal Rule
 elif task == "Trapezoidal Rule":
@@ -161,4 +161,4 @@ elif task == "Trapezoidal Rule":
 
     if st.button("Compute"):
         integral = trapezoid(y, x)
-        st.write(f"🔹 Integral: {integral:.6f}")
+        st.write(f" Integral: {integral:.6f}")
